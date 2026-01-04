@@ -2,7 +2,7 @@
 
 This document captures my learning notes while exploring blockchain systems, crypto fundamentals, and smart contract development.
 
-It includes explanations, refined questions, and observations gathered while building and testing Solidity contracts. The goal is not completeness, but clarity — understanding how on-chain systems actually behave under real-world conditions, both technically and conceptually.
+It includes explanations, refined questions, and observations gathered while building and testing Solidity contracts. The goal is not completeness, but clarity. Understanding how on-chain systems actually behave under real-world conditions, both technically and conceptually.
 
 ---
 
@@ -53,7 +53,7 @@ Smart contracts are programs that:
 - Must assume hostile callers by default
 
 Key realization:  
-A contract is not “used” by trusted clients — it is *interacted with by arbitrary actors*.
+A contract is not “used” by trusted clients, it is *interacted with by arbitrary actors*.
 
 This reframes development from “building features” to **defending assumptions**.
 
@@ -103,7 +103,7 @@ On-chain:
 - Every edge case is a potential exploit
 
 Writing attacker contracts made it clear that:
-- Attackers don’t “hack” — they follow the rules better than you
+- Attackers don’t “hack” they follow the rules better than you
 - The system fails logically, not mysteriously
 - The EVM is neutral and unforgiving
 
@@ -159,7 +159,7 @@ This means:
 - Attackers are rational, not random
 - Code correctness has financial consequences
 
-Security is not just a technical concern — it’s an economic one.  
+Security is not just a technical concern it’s an economic one.  
 Incentives shape behavior as much as logic does.
 
 ---
