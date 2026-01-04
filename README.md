@@ -20,6 +20,16 @@ It focuses on *writing contracts, breaking them, fixing them, and proving correc
 
 ## 🏗️ What’s Inside
 
+## 📓 Notes
+
+This repository includes a `NOTES.md` file documenting my learning process, including:
+- Blockchain & crypto fundamentals
+- Smart contract execution model
+- Security pitfalls and exploit mechanics
+- Design reasoning and open questions
+
+---
+
 ### Smart Contracts
 
 | Contract | Purpose |
