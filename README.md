@@ -20,7 +20,7 @@ It focuses on *writing contracts, breaking them, fixing them, and proving correc
 
 ## 🏗️ What’s Inside
 
-## 📓 Notes
+### 📓 Notes
 
 This repository includes a `NOTES.md` file documenting my learning process, including:
 - Blockchain & crypto fundamentals
