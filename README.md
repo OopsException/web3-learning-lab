@@ -1,57 +1,128 @@
-# Sample Hardhat 3 Beta Project (`mocha` and `ethers`)
+# 🧪 Web3 Learning Lab
 
-This project showcases a Hardhat 3 Beta project using `mocha` for tests and the `ethers` library for Ethereum interactions.
+**web3-learning-lab** is a hands-on project for building **deep, systems-level understanding of Ethereum and smart contract security**.
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+This repository is intentionally **not a tutorial**.  
+It focuses on *writing contracts, breaking them, fixing them, and proving correctness*.
 
-## Project Overview
+---
 
-This example project includes:
+## 🎯 Project Goals
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using `mocha` and ethers.js
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+- Understand Ethereum as a **settlement system**
+- Write Solidity with **security-first thinking**
+- Learn common **vulnerabilities by exploiting them**
+- Fix bugs using **invariants and correct design**
+- Prove behavior with **tests**
+- Gradually move toward **production-grade patterns**
 
-## Usage
+---
 
-### Running Tests
+## 🏗️ What’s Inside
 
-To run all the tests in the project, execute the following command:
+### Smart Contracts
 
-```shell
-npx hardhat test
+| Contract | Purpose |
+|--------|--------|
+| `Counter.sol` | Solidity fundamentals (state, functions, events) |
+| `Vault.sol` | ETH custody + access control |
+| `Bank.sol` | Reentrancy vulnerability **and its fix (CEI)** |
+| `BankAttacker.sol` | Demonstrates a real exploit using reentrancy |
+
+> ⚠️ Vulnerable contracts are intentionally kept for learning and comparison.
+
+---
+
+### Tests (Hardhat v3 + ethers v6)
+
+- Unit tests written in **TypeScript**
+- Exploit tests that **prove vulnerabilities**
+- Regression tests that **prove fixes**
+- Balance-diff testing instead of assumptions
+- Tests designed with an **auditor mindset**
+
+---
+
+## 🧰 Scripts & Tooling
+
+- Hardhat v3 (Beta)
+- ethers v6
+- Ignition deployment modules
+- Local Hardhat node
+- MetaMask-compatible frontend experiments
+
+---
+
+## 🧠 Core Concepts Covered
+
+- EOAs vs contracts
+- ETH balances vs internal accounting
+- Reentrancy and timing attacks
+- CEI (Checks–Effects–Interactions)
+- Custom Solidity errors
+- Access control as a security boundary
+- Why exploits are about **broken invariants**, not syntax
+
+---
+
+## 📂 Project Structure
+
+```text
+web3-learning-lab/
+├─ contracts/
+│  ├─ Counter.sol
+│  ├─ Vault.sol
+│  ├─ Bank.sol
+│  ├─ BankAttacker.sol
+├─ test/
+│  ├─ Counter.ts
+│  ├─ Vault.ts
+│  ├─ BankAttack.ts
+├─ scripts/
+│  ├─ deploy-vault.ts
+│  ├─ send-op-tx.ts
+├─ ignition/
+│  └─ Counter.ts
+├─ hardhat.config.ts
+├─ tsconfig.json
+├─ package.json
+├─ README.md
+└─ .gitignore
 ```
 
-You can also selectively run the Solidity or `mocha` tests:
+# Roadmap
 
-```shell
-npx hardhat test solidity
-npx hardhat test mocha
-```
+## Phase 1: Fundamentals & Exploits (Completed)
 
-### Make a deployment to Sepolia
+- Solidity basics
+- Reentrancy exploit
+- Attacker contracts
+- Proof via tests
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+## Phase 2: Security & Invariants (Next)
 
-To run the deployment to a local chain:
+- Invariant testing
+- Regression tests
+- NatSpec documentation
+- Provable correctness
 
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
+## Phase 3: Real-World Patterns
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+- Pull payments
+- Escrow
+- Pausable contracts
+- Ownership and upgrade risks
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
+## Phase 4: Deployment & Ecosystem
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
+- Deploy to Sepolia or Holesky
+- Contract verification on explorers
+- Gas and fee mechanics
+- On-chain interaction via explorers
 
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
+## Phase 5: Advanced Topics (Optional)
 
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
+- MEV and front-running
+- Flashbots and private order flow
+- Layer 2 settlement mechanics
+- Historical exploit postmortems
