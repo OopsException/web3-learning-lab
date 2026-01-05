@@ -25,12 +25,14 @@ describe("Vault", function () {
       { signer: attackerEOA }
     );
 
-    // Attack with 1 ETH
-    await attacker.connect(attackerEOA).attack({
-      value: ethers.parseEther("1"),
-    });
+    // Attack with 1 ETH (expected to revert due to transfer failure)
+    await expect(
+      attacker.connect(attackerEOA).attack({ value: ethers.parseEther("1") })
+    ).to.be.revertedWithCustomError(bank, "TransferFailed");
 
-    expect(await ethers.provider.getBalance(await bank.getAddress()))
-      .to.equal(0n);
+    // Bank balance should remain intact
+    expect(await ethers.provider.getBalance(await bank.getAddress())).to.equal(
+      ethers.parseEther("10")
+    );
   });
 });

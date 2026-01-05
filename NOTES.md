@@ -207,3 +207,83 @@ Planned areas to explore:
 - MEV, front-running, and transaction ordering
 - Layer 2 execution and settlement
 - Historical exploit postmortems
+
+---
+
+## Core Mental Shift
+### Smart contracts are **state machines**, not programs
+
+- ETH and tokens do not “move”
+- Everything is **internal accounting**
+- Storage + rules define reality
+
+---
+
+## Vaults & Tokens (Key Insight)
+> **ERC20 tokens are just vaults with transferable balances**
+
+Both rely on:
+- `mapping(address => uint256)`
+- strict invariants
+- controlled state transitions
+
+### Vault invariant
+- `deposited + claimable == actual ETH held`
+
+### Token invariant
+- `sum(balances) == totalSupply`
+
+Breaking invariants = exploits.
+
+---
+
+## Pull Payments Pattern
+Never send funds automatically during state changes.
+
+Instead:
+1. Update internal state (effects)
+2. Mark funds as claimable
+3. Let users claim in a separate call
+
+Benefits:
+- prevents reentrancy
+- isolates external calls
+- simplifies reasoning
+
+---
+
+## CEI (Checks–Effects–Interactions)
+Correct order:
+1. **Check** conditions
+2. **Effect** state changes
+3. **Interact** externally
+
+All dangerous bugs come from violating this order.
+
+---
+
+## Time as a Security Boundary
+`block.timestamp` is not just a utility — it is an **attack surface**.
+
+Rules:
+- Time must gate state transitions explicitly
+- “Almost unlocked” is still locked
+- Tests must check:
+  - immediately
+  - just before unlock
+  - after unlock
+
+Off-by-one errors here cause real exploits.
+
+---
+
+## Custom Errors (Modern Solidity)
+Custom errors:
+- are cheaper than revert strings
+- encode intent clearly
+- help testing and auditing
+
+Example:
+```solidity
+error TooEarly(uint256 nowTs, uint256 unlockTs);
+```
